@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gardoone.Views.SettingsPage"
+              xmlns:vm="clr-namespace:Gardoone.ViewModels"
+             x:DataType="vm:SettingsViewModel"
+             Title="درباره ما">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <VerticalStackLayout FlowDirection="RightToLeft" Padding="10">
+            <Label FontSize="17" FlowDirection="RightToLeft">سلام! اپلیکیشن گردونه یک اپلیکیشن ایرانی است که به شما این امکان را میدهد که سفر های خود و خاطرات آنها را ثبت کنید و بتوانید سفرنامه های خود را در تلفن همراهتان داشته باشید.</Label>
+            <Label FontSize="17" FlowDirection="RightToLeft">توسعه دهنده:سیدعلی حسینی</Label>
+            <Label 
+        Text="مشاهده سورس کد در گیت هاب"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" TextColor="Blue"  FontSize="20" >
+
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LinkCommand}"
+                                      CommandParameter="https://github.com/sseeyyeedd/Gardoone" />
+                </Label.GestureRecognizers>
+
+            </Label>
+            <Label 
+        Text="اطلاعات بیشتر در سایت تمزیو"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" TextColor="Blue"  FontSize="20" >
+
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LinkCommand}"
+                                      CommandParameter="https://temzio.ir/Gardoone" />
+                </Label.GestureRecognizers>
+
+            </Label>
+            <Label 
+        Text="تماس با توسعه دهنده"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" TextColor="Blue"  FontSize="20" >
+
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CallDeveloperCommand }"
+                                      />
+                </Label.GestureRecognizers>
+
+            </Label>
+        </VerticalStackLayout>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button BackgroundColor="#219ebc" Text="درباره ما" CornerRadius="0"></Button>
+            <Button Command="{Binding GoBackCommand}" Grid.Column="1" Text="خانه" CornerRadius="0"></Button>
+            <Button Command="{Binding GoToAddTripCommand}" Grid.Column="2" Text="افزودن" CornerRadius="0"></Button>
+        </Grid>
+    </Grid>
+</ContentPage>

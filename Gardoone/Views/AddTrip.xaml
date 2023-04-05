@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gardoone.AddTrip"
+             Title="افزودن سفر"
+             xmlns:vm="clr-namespace:Gardoone.ViewModels"
+             x:DataType="vm:AddTripViewModel"
+            Disappearing="ContentPage_Disappearing"
+             
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <ScrollView>
+            <StackLayout>
+                <VerticalStackLayout FlowDirection="RightToLeft">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*">
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding MainImage}"></Image>
+                        <Button VerticalOptions="End" HorizontalOptions="Start" Text="انتخاب تصویر" CornerRadius="25" Command="{Binding FilePickerClickedCommand}" Margin="20" ></Button>
+                        
+                    </Grid>
+                    <Entry Placeholder="عنوان" Margin="10" MaxLength="19" Text="{Binding Title}"></Entry>
+                    <Entry Placeholder="مقصد" Margin="10" MaxLength="50" Text="{Binding Destination}"></Entry>
+                   
+                        <Entry Margin="10" Placeholder="تاریخ شروع" MaxLength="50" Text="{Binding StartTime}" Grid.Row="1"></Entry>
+                        <Entry Margin="10" Placeholder="تاریخ پایان" MaxLength="50" Text="{Binding EndTime}" Grid.Row="1" Grid.Column="1"></Entry>
+                   
+
+                    
+                    <Editor AutoSize="TextChanges" MaxLength="250" Text="{Binding Description}" Placeholder="توضیحات" Margin="10"></Editor>
+                    <Button Text="افزودن سفر" FontSize="25" CornerRadius="25" Margin="20" Command="{Binding AddNewTripCommand}"></Button>
+                    <Label Text="{Binding Error}" TextColor="Red"></Label>
+                    
+                </VerticalStackLayout>
+            </StackLayout>
+        </ScrollView>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding GoToSettingsCommand}" Text="درباره ما" CornerRadius="0"></Button>
+            <Button Command="{Binding GoBackCommand}" Grid.Column="1" Text="خانه" CornerRadius="0"></Button>
+            <Button BackgroundColor="#219ebc" Grid.Column="2" Text="افزودن" CornerRadius="0"></Button>
+        </Grid>
+    </Grid>
+    
+</ContentPage>

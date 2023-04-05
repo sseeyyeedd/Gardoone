@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gardoone.Views.TripPage"
+             Title="مشاهده سفر"
+             xmlns:vm="clr-namespace:Gardoone.ViewModels"
+             x:DataType="vm:TripViewModel"
+             xmlns:models="clr-namespace:Models;assembly=Models"
+             Disappearing="ContentPage_Disappearing"
+             Loaded="ContentPage_Loaded"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <ScrollView>
+    <VerticalStackLayout>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding ImageUrl}"></Image>
+                    <Button MaximumWidthRequest="100" Opacity="0.7" HorizontalOptions="End" CornerRadius="25" Margin="0,10,10,0" VerticalOptions="Start" Text="تغییر تصویر" Command="{Binding ChangePhotoCommand}"></Button>
+                    <Button MaximumWidthRequest="100" Opacity="0.7" HorizontalOptions="Start" CornerRadius="25" Margin="10,10,0,0" VerticalOptions="Start" Text="حذف سفر" Clicked="Button_Clicked" Background="red"></Button>
+                </Grid>
+        
+                <StackLayout Padding="10">
+                    <Entry Text="{Binding Trip.Title}" MaxLength="19" HorizontalTextAlignment="Center" FontSize="25">
+                    </Entry>
+                    
+                        <Entry MaxLength="50" Placeholder="مقصد" HorizontalTextAlignment="Center" Text="{Binding Trip.Destination}"></Entry>
+                        <Entry MaxLength="50" Placeholder="تاریخ شروع" HorizontalTextAlignment="Center" Text="{Binding Trip.StartTime}"></Entry>
+                        <Entry MaxLength="50" Placeholder="تاریخ پایان" HorizontalTextAlignment="Center" Text="{Binding Trip.EndTime}"></Entry>
+                    
+
+                    <Editor Margin="0,20,0,0" AutoSize="TextChanges" MaxLength="250" Placeholder="توضیحات" HorizontalTextAlignment="End" Text="{Binding Trip.Description}"></Editor>
+
+                    <Grid Margin="0,25,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Margin="15" Command="{Binding AddTextCommand}" Text="افزودن نوشته"></Button>
+                        <Label Text="نوشته ها" VerticalTextAlignment="Center" FontSize="25" Grid.Column="1" HorizontalTextAlignment="End"></Label>
+                    </Grid>
+
+                    <CollectionView ItemsSource="{Binding TextsCollection}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Text">
+                                <Border Background="white" StrokeShape="RoundRectangle 15,15,15,15">
+                                    <StackLayout Margin="10">
+                                        
+                                        <Entry HorizontalTextAlignment="End" MaxLength="22" Text="{Binding Title}" Placeholder="عنوان"></Entry>
+                                        <Editor FlowDirection="RightToLeft" MaxLength="250" Text="{Binding Body}" Placeholder="متن"></Editor>
+                                    </StackLayout>
+
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                
+    </VerticalStackLayout>
+    </ScrollView>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding GoToSettingsCommand}" Text="درباره ما" CornerRadius="0"></Button>
+            <Button Command="{Binding GoBackCommand}" Grid.Column="1" Text="خانه" CornerRadius="0"></Button>
+            <Button Command="{Binding GoToAddTripCommand}" Grid.Column="2" Text="افزودن" CornerRadius="0"></Button>
+        </Grid>
+    </Grid>
+</ContentPage>
